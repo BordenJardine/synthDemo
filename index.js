@@ -19,11 +19,7 @@ gainNode.gain.value = 0.5;
 
 //Create analyser
 var analyser = audioCtx.createAnalyser();
-
 analyser.fftSize = 2048;
-var bufferLength = analyser.frequencyBinCount;
-var dataArray = new Uint8Array(bufferLength);
-analyser.getByteTimeDomainData(dataArray);
 
 // connect our nodes
 
