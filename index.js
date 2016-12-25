@@ -10,8 +10,8 @@ var canvasCtx = canvas.getContext("2d");
 // create Oscillator node
 var oscillator = audioCtx.createOscillator();
 
-oscillator.type = 'sawtooth';
-oscillator.frequency.value = 440; // value in hertz
+oscillator.type = 'square';
+oscillator.frequency.value = 220; // value in hertz
 oscillator.start();
 
 var gainNode = audioCtx.createGain();
