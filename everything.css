@@ -25,15 +25,29 @@ label {
 }
 
 .module {
+  height: 250px;
   border-radius: 5px;
   border: 5px solid #888;
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: center;
+  padding-top: 10px;
+}
+
+.module .tag {
+  color: #fff;
+  background-color: #888;
+  position: absolute;
+  margin: 0 auto;
+  top: -5px;
+  font-weight: 600;
+  letter-spacing: 1;
+  border:5px solid #888;
+  border-radius: 5px;
 }
 
 .osc {
   width: 400px;
-  height: 250px;
 }
 
