@@ -26,6 +26,10 @@ class Scope {
     return this.analyser;
   }
 
+  connect(node) {
+    this.analyser.connect(node);
+  }
+
   drawScope() {
     var timeData = new Uint8Array(this.analyser.frequencyBinCount);
     var risingEdge = 0;
