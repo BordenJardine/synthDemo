@@ -6,6 +6,7 @@ var modeControls = document.querySelectorAll('.modeControl');
 var wavesDisplay = document.querySelector('.wavesDisplay');
 var scopeElement = document.querySelector('.scope');
 var frequenciesDisplay = document.querySelector('.frequencies');
+var lookahead = 0.25;
 
 var audioCtx = new window.AudioContext();
 
@@ -14,26 +15,29 @@ var scope = new Scope(scopeElement, audioCtx);
 scope.connect(audioCtx.destination);
 
 // set up a master gain
-var gain = audioCtx.createGain();
-gain.gain.value = 1;
-gain.connect(scope.input);
+var masterGain = audioCtx.createGain();
+masterGain.gain.value = 0.5;
+masterGain.connect(scope.input);
 
 // which waves are involved?
 var fundamental = 220;
 var frequencies = [];
 var frequencyCount = 1;
 var oscs = [];
-var maxFrequencies = 66;
+var gains = [];
+var maxFrequencies = 50;
 
 var setup = function() {
-  frequencyCount = 1;
   // generate frequencies
   frequencies = [];
   let j = 1;
   for (let i = 1; j <= maxFrequencies; i++) {
     // squares only get odd harmonics!
     if (mode == 'sawtooth' || i % 2 != 0) {
-      frequencies.push(fundamental * i);
+      frequencies.push({
+        freq: fundamental * i,
+        gain: 1 / i
+      });
       j++;
     }
   }
@@ -60,23 +64,34 @@ var updateWaveCount = function() {
   // clear old oscillators
   oscs.forEach(osc => {
     osc.stop;
-    osc.disconnect(gain);
+    osc.disconnect();
   });
-  oscs = [];
+  gains.forEach(gain => gain.disconnect());
 
-  gain.gain.value = (0.5 / frequencyCount);
+  oscs = [];
+  gains = [];
+
+  //gain.gain.value = (0.5 / frequencyCount);
   // create new oscillators
+  var startTime = audioCtx.currentTime + lookahead;
   for (let i = 0; i < frequencyCount; i++) {
     let osc = audioCtx.createOscillator();
     osc.type = 'sine';
-    osc.frequency.value = frequencies[i];
+    osc.frequency.value = frequencies[i].freq;
+
+    let gain = audioCtx.createGain();
+    gain.gain.value = frequencies[i].gain;
     osc.connect(gain);
-    osc.start();
+    osc.start(startTime);
+
+    gain.connect(masterGain);
+
     oscs.push(osc);
+    gains.push(gain);
   }
 
   // update frequencies display
-  frequenciesDisplay.innerHTML = 'frequencies: ' + frequencies.slice(0, frequencyCount).join(", ");
+  //frequenciesDisplay.innerHTML = 'frequencies: ' + frequencies.slice(0, frequencyCount).join(", ");
 };
 wavesControl.oninput = updateWaveCount;
 
