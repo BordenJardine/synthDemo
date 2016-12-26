@@ -44,6 +44,11 @@ class Osc {
     this.updateOctave = this.updateOctave.bind(this);
     this.octaveControl = element.querySelector('.octaveControl');
     this.octaveControl.onchange = this.updateOctave;
+
+    // volume control
+    this.updateVolume = this.updateVolume.bind(this);
+    this.volumeControl = element.querySelector('.volumeControl');
+    this.volumeControl.onchange = this.updateVolume;
   }
 
   set freq(freq) {
@@ -80,6 +85,10 @@ class Osc {
         break;
     }
     this.freq = this.currentFreq;
+  }
+
+  updateVolume() {
+    this.gainNode.gain.value = +this.volumeControl.value;
   }
 }
 

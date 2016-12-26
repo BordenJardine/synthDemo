@@ -1,7 +1,7 @@
 (function() {
 
-const ANALYSER_FFT = 2048;
-const SCALING = 256;
+const ANALYSER_FFT_SIZE = 2048;
+const RESOLUTION = 256;
 const EDGE_THRESHOLD = 5;
 const BG_COLOR = 'rgb(10, 30, 10)';
 const CENTER_LINE_COLOR = 'rgb(0, 50, 0)';
@@ -13,11 +13,11 @@ class Scope {
     this.canvas = canvas;
     this.audioCtx = audioCtx;
     this.analyser = audioCtx.createAnalyser();
-    this.analyser.fftSize = ANALYSER_FFT;
+    this.analyser.fftSize = ANALYSER_FFT_SIZE;
     this.canvasCtx = canvas.getContext("2d");
     this.width = this.canvas.width;
     this.height = this.canvas.height;
-    this.scaling = this.height / SCALING;
+    this.scaling = this.height / RESOLUTION;
     this.drawScope = this.drawScope.bind(this);
     this.drawScope();
   }
@@ -47,14 +47,15 @@ class Scope {
     this.canvasCtx.beginPath();
 
     // buffer overrun protection
-    while (timeData[risingEdge++] - SCALING / 2 > 0 && risingEdge <= this.width);
+    while (timeData[risingEdge++] - RESOLUTION / 2 > 0 && risingEdge <= this.width);
     if (risingEdge >= this.width) risingEdge = 0;
 
-    while (timeData[risingEdge++] - SCALING / 2 < EDGE_THRESHOLD && risingEdge <= this.width);
+    while (timeData[risingEdge++] - RESOLUTION / 2 < EDGE_THRESHOLD && risingEdge <= this.width);
     if (risingEdge >= this.width) risingEdge = 0;
 
-    for (var x = risingEdge; x < timeData.length && x - risingEdge < this.width; x++)
+    for (var x = risingEdge; x < timeData.length && x - risingEdge < this.width; x++) {
       this.canvasCtx.lineTo(x - risingEdge, this.height - timeData[x] * this.scaling);
+    }
 
     this.canvasCtx.stroke();
     requestAnimationFrame(this.drawScope);
