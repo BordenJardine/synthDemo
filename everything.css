@@ -1,3 +1,11 @@
+label {
+  font-weight: 600;
+}
+
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -11,13 +19,21 @@
   border-radius:200px;
 }
 
+.small-scope {
+  width: 200px;
+  height: 200px;
+}
+
 .module {
   border-radius: 5px;
   border: 5px solid #888;
-  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .osc {
-  width: 500;
-  height: 300;
+  width: 400px;
+  height: 250px;
 }
+

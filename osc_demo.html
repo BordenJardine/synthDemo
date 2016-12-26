@@ -6,9 +6,16 @@
   <link href="everything.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body>
-  <div class="module osc inline-block">
-    <div class="controlls inline-block half-width">
+  <div class="module osc">
+    <div class="controlls">
+      <label class="block" for="waveform">Waveform</label>
+      <input class="waveformControl" type="radio" name="waveform" value="square">Square<br>
+      <input class="waveformControl" type="radio" name="waveform" value="sawtooth">Saw<br>
+      <input class="waveformControl" type="radio" name="waveform" value="triangle">Triangle<br>
+      <input class="waveformControl" type="radio" name="waveform" value="sine">Sine<br>
     </div>
-    <canvas class="scope inline-block half-width" width=200 height=200></canvas>
+    <div class="controlls">
+      <canvas class="scope small-scope"></canvas>
+    </div>
   </div>
 </body>
