@@ -48,10 +48,10 @@ class Scope {
     this.canvasCtx.beginPath();
 
     // buffer overrun protection
-    while (timeData[this.risingEdge++] - 128 > 0 && this.risingEdge <= this.width);
+    while (timeData[this.risingEdge++] - SCALING / 2 > 0 && this.risingEdge <= this.width);
     if (this.risingEdge >= this.width) this.risingEdge = 0;
 
-    while (timeData[this.risingEdge++] - 128 < EDGE_THRESHOLD && this.risingEdge <= this.width);
+    while (timeData[this.risingEdge++] - SCALING / 2 < EDGE_THRESHOLD && this.risingEdge <= this.width);
     if (this.risingEdge >= this.width) this.risingEdge = 0;
 
     for (var x = this.risingEdge; x < timeData.length && x - this.risingEdge < this.width; x++)

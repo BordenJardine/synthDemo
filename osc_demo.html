@@ -9,10 +9,12 @@
   <div class="module osc">
     <div class="controlls">
       <label class="block" for="waveform">Waveform</label>
-      <input class="waveformControl" type="radio" name="waveform" value="square">Square<br>
-      <input class="waveformControl" type="radio" name="waveform" value="sawtooth">Saw<br>
-      <input class="waveformControl" type="radio" name="waveform" value="triangle">Triangle<br>
-      <input class="waveformControl" type="radio" name="waveform" value="sine">Sine<br>
+      <input class="waveformControl" type="radio" name="waveform" value="square" checked>Square</input><br>
+      <input class="waveformControl" type="radio" name="waveform" value="sawtooth">Saw</input><br>
+      <input class="waveformControl" type="radio" name="waveform" value="triangle">Triangle</input><br>
+      <input class="waveformControl" type="radio" name="waveform" value="sine">Sine</input><br>
+      <label class="block" for="waveform">Octave</label>
+      <input class="octaveControl" type="range" min="-1" max="1" step="1"></input>
     </div>
     <div class="controlls">
       <canvas class="scope small-scope"></canvas>

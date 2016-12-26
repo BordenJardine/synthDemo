@@ -12,9 +12,13 @@ class Osc {
   constructor(element, audioCtx) {
     this.element = element;
 
+    this.currentFreq = STARTING_FREQ;
+    // change the frequency by this
+    this.octaveMultiplier = 1;
+
     // create a web audio oscillator
     this.oscillator = audioCtx.createOscillator();
-    this.oscillator.frequency.value = STARTING_FREQ;
+    this.oscillator.frequency.value = this.currentFreq;
     this.oscillator.type = WAVEFORMS[0];
     // connect it to a web audio gain node
     this.gainNode = audioCtx.createGain();
@@ -27,12 +31,28 @@ class Osc {
     this.gainNode.connect(this.scope.input);
     this.oscillator.start();
 
-    //hook up some controls
+    // hook up some controls
+
+    // waveform selector
     this.updateWaveform = this.updateWaveform.bind(this);
     this.waveformControls = element.querySelectorAll('.waveformControl');
     this.waveformControls.forEach(waveformControl => {
-      waveformControl.onclick = this.updateWaveform;
+      waveformControl.onchange = this.updateWaveform;
     });
+
+    // octave selector
+    this.updateOctave = this.updateOctave.bind(this);
+    this.octaveControl = element.querySelector('.octaveControl');
+    this.octaveControl.onchange = this.updateOctave;
+  }
+
+  set freq(freq) {
+    this.currentFreq = freq;
+    this.oscillator.frequency.value = this.currentFreq * this.octaveMultiplier;
+  }
+
+  get freq() {
+    return this.currentFreq;
   }
 
   connect(node) {
@@ -45,6 +65,21 @@ class Osc {
         this.oscillator.type = waveformControl.value;
       };
     });
+  }
+
+  updateOctave() {
+    switch (+this.octaveControl.value) {
+      case -1:
+        this.octaveMultiplier = 0.5;
+        break;
+      case 0:
+        this.octaveMultiplier = 1;
+        break;
+      case 1:
+        this.octaveMultiplier = 2;
+        break;
+    }
+    this.freq = this.currentFreq;
   }
 }
 
