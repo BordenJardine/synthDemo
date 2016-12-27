@@ -1,0 +1,24 @@
+<head>
+  <title>oscilator!</title>
+  <script src="scope.js"></script>
+  <script src="additive_demo.js"></script>
+  <link href="everything.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body>
+  <div class="module osc">
+    <div class="tag">additive osc</div>
+    <div class="controlls">
+      <label class="block" for="modeControl">mode</label>
+      <input class="modeControl" type="radio" name="mode" value="sawtooth" checked>sawtooth</input><br>
+      <input class="modeControl" type="radio" name="mode" value="square">square</input><br>
+      <hr>
+      <label class="block" for="wavesControl">sine waves: <span class="wavesDisplay"></span></label>
+      <input class="wavesControl" type="range" min="1" max="50" step="1" value="1"></input>
+    </div>
+    <div class="scopeContainer">
+      <canvas class="scope smallScope"></canvas>
+    </div>
+  </div>
+  <span class="frequencies"></span>
+</body>
+
