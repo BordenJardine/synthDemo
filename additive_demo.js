@@ -6,7 +6,7 @@ var modeControls = document.querySelectorAll('.modeControl');
 var wavesDisplay = document.querySelector('.wavesDisplay');
 var scopeElement = document.querySelector('.scope');
 var frequenciesDisplay = document.querySelector('.frequencies');
-var lookahead = 0.1;
+var lookahead = 0.0;
 
 var audioCtx = new window.AudioContext();
 
@@ -20,7 +20,7 @@ masterGain.gain.value = 0.5;
 masterGain.connect(scope.input);
 
 // which waves are involved?
-var fundamental = 220;
+var fundamental = 440;
 var frequencies = [];
 var frequencyCount = 1;
 var oscs = [];
