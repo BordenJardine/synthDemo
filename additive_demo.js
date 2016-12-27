@@ -6,7 +6,7 @@ var modeControls = document.querySelectorAll('.modeControl');
 var wavesDisplay = document.querySelector('.wavesDisplay');
 var scopeElement = document.querySelector('.scope');
 var frequenciesDisplay = document.querySelector('.frequencies');
-var lookahead = 0.25;
+var lookahead = 0.1;
 
 var audioCtx = new window.AudioContext();
 
