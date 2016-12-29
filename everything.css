@@ -24,8 +24,18 @@ label {
   height: 200px;
 }
 
+.ADSRGraph {
+  width: 200px;
+  height: 150px;
+}
+
+.moduleContainer {
+  display: flex;
+}
+
 .module {
   height: 250px;
+  width: 400px;
   border-radius: 5px;
   border: 5px solid #888;
   display: flex;
@@ -33,6 +43,7 @@ label {
   justify-content: space-around;
   align-items: center;
   padding-top: 10px;
+  margin: 10px;
 }
 
 .module .tag {

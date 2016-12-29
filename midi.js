@@ -1,3 +1,5 @@
+(function() {
+
 const NOTE_ON = 144;
 const NOTE_OFF = 128;
 
@@ -102,3 +104,7 @@ const NOTE_MAP = {
 };
 
 const MIDI_NOTES = Object.keys(NOTE_MAP).map(Number);
+
+window.MidiHandler = MidiHandler;
+
+})();

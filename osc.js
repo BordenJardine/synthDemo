@@ -9,6 +9,7 @@ const WAVEFORMS = [
 ];
 
 class Osc {
+
   constructor(element, audioCtx) {
     this.element = element;
 

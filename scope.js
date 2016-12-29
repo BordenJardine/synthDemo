@@ -6,7 +6,7 @@ const EDGE_THRESHOLD = 5;
 const BG_COLOR = 'rgb(10, 30, 10)';
 const CENTER_LINE_COLOR = 'rgb(0, 50, 0)';
 const STROKE_COLOR = 'rgb(0, 200, 0)';
-  const LINE_WIDTH = 3;
+const LINE_WIDTH = 3;
 
 class Scope {
   constructor(canvas, audioCtx) {
