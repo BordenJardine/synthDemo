@@ -72,7 +72,7 @@ class Amp {
     let decay = this.decay * MULTIPLIER;
     let sustain = this.sustain * 0.01;
 
-    this.amp.gain.cancelScheduledValues(0);
+    this.amp.gain.cancelScheduledValues(now);
     amp.gain.setTargetAtTime(0.0, now, now + GAIN_COOLDOWN);
     amp.gain.linearRampToValueAtTime(1.0, now + attack);
     amp.gain.linearRampToValueAtTime(sustain, now + attack + decay);
