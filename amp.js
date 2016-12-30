@@ -73,9 +73,9 @@ class Amp {
     let sustain = this.sustain * 0.01;
 
     this.amp.gain.cancelScheduledValues(now);
-    amp.gain.setTargetAtTime(0.0, now, now + GAIN_COOLDOWN);
+    amp.gain.linearRampToValueAtTime(0.0, now, GAIN_COOLDOWN);
     amp.gain.linearRampToValueAtTime(1.0, now + attack);
-    amp.gain.linearRampToValueAtTime(sustain, now + attack + decay);
+    amp.gain.linearRampToValueAtTime(sustain, now + attack + decay + GAIN_COOLDOWN);
   }
 
   releaseNote(note) {
