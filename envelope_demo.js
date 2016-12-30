@@ -9,7 +9,14 @@ oscillator.connect(amp.input);
 amp.connect(audioCtx.destination);
 
 var midiHandler = new MidiHandler();
-midiHandler.onnoteon = (frequency => oscillator.freq = frequency);
+midiHandler.onnoteon = (frequency => {
+  oscillator.freq = frequency;
+  amp.trigger(frequency);
+});
+
+midiHandler.onnoteoff = (frequency => {
+  amp.releaseNote(frequency);
+});
 
 };
 

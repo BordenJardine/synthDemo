@@ -12,6 +12,7 @@ class Osc {
 
   constructor(element, audioCtx) {
     this.element = element;
+    this.audioCtx = audioCtx;
 
     this.currentFreq = STARTING_FREQ;
     // change the frequency by this
@@ -54,7 +55,8 @@ class Osc {
 
   set freq(freq) {
     this.currentFreq = freq;
-    this.oscillator.frequency.value = this.currentFreq * this.octaveMultiplier;
+    let value =  this.currentFreq * this.octaveMultiplier;
+    this.oscillator.frequency.setValueAtTime(value, this.audioCtx.currentTime);
   }
 
   get freq() {

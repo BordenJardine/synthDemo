@@ -62,3 +62,19 @@ label {
   width: 400px;
 }
 
+.attackLabel {
+  color: #c00;
+}
+
+.decayLabel {
+  color: #0a0;
+}
+
+.sustainLabel {
+  color: #00d;
+}
+
+.releaseLabel {
+  color: #b0b;
+}
+

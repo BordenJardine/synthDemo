@@ -1,7 +1,11 @@
 (function() {
 
-const MULTIPLIER = 0.1;
-const STROKE_COLOR = 'rgb(33, 33, 33)';
+const MULTIPLIER = 0.025;
+const ATTACK_COLOR = 'rgb(221, 0, 0)';
+const DECAY_COLOR = 'rgb(0, 170, 0)';
+const SUSTAIN_COLOR = 'rgb(0, 0, 221)';
+const RELEASE_COLOR = 'rgb(187, 0, 187)';
+
 const LINE_WIDTH = 5;
 const MIN_SUSTAIN_WIDTH = 10;
 const MARGIN = 10;
@@ -9,7 +13,9 @@ const MARGIN = 10;
 class Amp {
 
   constructor(element, audioCtx) {
+    this.audioCtx = audioCtx;
     this.amp = audioCtx.createGain();
+    this.amp.gain.value = 0.0;
     this.attack = 25;
     this.decay = 25;
     this.sustain = 50;
@@ -57,19 +63,23 @@ class Amp {
   trigger(note) {
     this.currentNote = note;
     let amp = this.amp;
-    let now = audioCtx.currentTime();
+    let now = this.audioCtx.currentTime;
     let attack = this.attack * MULTIPLIER;
     let decay = this.decay * MULTIPLIER;
     let sustain = this.sustain * 0.01;
+
+    this.amp.gain.cancelScheduledValues(0);
     amp.gain.setValueAtTime(0.0, now);
     amp.gain.linearRampToValueAtTime(1.0, now + attack);
     amp.gain.linearRampToValueAtTime(sustain, now + attack + decay);
   }
 
-  release(note) {
+  releaseNote(note) {
     if (this.currentNote != note) return;
-    let release = this.release * MULTIPLIER;
-    amp.gain.linearRampToValueAtTime(0.0, release);
+    let release = this.audioCtx.currentTime + (this.release * MULTIPLIER);
+
+    this.amp.gain.cancelScheduledValues(0);
+    this.amp.gain.linearRampToValueAtTime(0.0, release);
   }
 
   drawADSRGraph() {
@@ -85,16 +95,33 @@ class Amp {
     var release = percent(this.release);
     // sustain gets the rest
     var sustainW = this.canvasWidth - (attack + decay + release);
-    var sustainH = this.canvasHeight - (this.sustain * this.canvasHeight / 100);
+    var sustainH = this.canvasHeight - (this.sustain * this.canvasHeight / 100) + MARGIN;
+    if (sustainH > this.canvasHeight) sustainH = this.canvasHeight;
 
     this.canvasCtx.clearRect(0, 0, this.canvasWidth + MARGIN, this.canvasHeight + MARGIN);
-    this.canvasCtx.beginPath();
     this.canvasCtx.lineWidth = LINE_WIDTH;
-    this.canvasCtx.strokeStyle = STROKE_COLOR;
+
+    this.canvasCtx.strokeStyle = ATTACK_COLOR;
+    this.canvasCtx.beginPath();
     this.canvasCtx.moveTo(5, this.canvasHeight);
     this.canvasCtx.lineTo(attack, MARGIN);
+    this.canvasCtx.stroke();
+
+    this.canvasCtx.strokeStyle = DECAY_COLOR;
+    this.canvasCtx.beginPath();
+    this.canvasCtx.moveTo(attack, MARGIN);
     this.canvasCtx.lineTo(attack + decay, sustainH);
+    this.canvasCtx.stroke();
+
+    this.canvasCtx.strokeStyle = SUSTAIN_COLOR;
+    this.canvasCtx.beginPath();
+    this.canvasCtx.moveTo(attack + decay, sustainH);
     this.canvasCtx.lineTo(attack + decay + sustainW, sustainH);
+    this.canvasCtx.stroke();
+
+    this.canvasCtx.strokeStyle = RELEASE_COLOR;
+    this.canvasCtx.beginPath();
+    this.canvasCtx.moveTo(attack + decay + sustainW, sustainH);
     this.canvasCtx.lineTo(this.canvasWidth, this.canvasHeight);
     this.canvasCtx.stroke();
   }
