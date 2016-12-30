@@ -2,6 +2,7 @@
 
 const DEFAULT_GAIN = 0.5;
 const STARTING_FREQ = 440; // value in hertz
+const DEFAULT_PORTAMENTO = 0.001; //seconds to slide between notes
 const WAVEFORMS = [
   'square',
   'sawtooth',
@@ -17,6 +18,7 @@ class Osc {
     this.currentFreq = STARTING_FREQ;
     // change the frequency by this
     this.octaveMultiplier = 1;
+    this.portamento = DEFAULT_PORTAMENTO;
 
     // create a web audio oscillator
     this.oscillator = audioCtx.createOscillator();
@@ -55,8 +57,9 @@ class Osc {
 
   set freq(freq) {
     this.currentFreq = freq;
-    let value =  this.currentFreq * this.octaveMultiplier;
-    this.oscillator.frequency.setValueAtTime(value, this.audioCtx.currentTime);
+    let value = this.currentFreq * this.octaveMultiplier;
+    let time = this.audioCtx.currentTime + this.portamento;
+    this.oscillator.frequency.exponentialRampToValueAtTime(value, time);
   }
 
   get freq() {

@@ -1,11 +1,15 @@
 (function() {
 
+// scalse the ADSR values
 const MULTIPLIER = 0.025;
-const ATTACK_COLOR = 'rgb(221, 0, 0)';
-const DECAY_COLOR = 'rgb(0, 170, 0)';
-const SUSTAIN_COLOR = 'rgb(0, 0, 221)';
-const RELEASE_COLOR = 'rgb(187, 0, 187)';
 
+const GAIN_COOLDOWN = 0.01;
+
+  //graph stuff
+const ATTACK_COLOR = '#ff4242';
+const DECAY_COLOR = '#55b377';
+const SUSTAIN_COLOR = '#6666ee';
+const RELEASE_COLOR = '#cc66cc';
 const LINE_WIDTH = 5;
 const MIN_SUSTAIN_WIDTH = 10;
 const MARGIN = 10;
@@ -69,7 +73,7 @@ class Amp {
     let sustain = this.sustain * 0.01;
 
     this.amp.gain.cancelScheduledValues(0);
-    amp.gain.setValueAtTime(0.0, now);
+    amp.gain.setTargetAtTime(0.0, now, now + GAIN_COOLDOWN);
     amp.gain.linearRampToValueAtTime(1.0, now + attack);
     amp.gain.linearRampToValueAtTime(sustain, now + attack + decay);
   }
@@ -79,11 +83,10 @@ class Amp {
     let release = this.audioCtx.currentTime + (this.release * MULTIPLIER);
 
     this.amp.gain.cancelScheduledValues(0);
-    this.amp.gain.linearRampToValueAtTime(0.0, release);
+    this.amp.gain.linearRampToValueAtTime(0.0, release + GAIN_COOLDOWN);
   }
 
   drawADSRGraph() {
-    // debugger;
     var valueMax = this.canvasWidth / 4;
 
     var percent = function(x) {

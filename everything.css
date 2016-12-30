@@ -63,18 +63,18 @@ label {
 }
 
 .attackLabel {
-  color: #c00;
+  color: #ff4242;
 }
 
 .decayLabel {
-  color: #0a0;
+  color: #66bb85;
 }
 
 .sustainLabel {
-  color: #00d;
+  color: #66e;
 }
 
 .releaseLabel {
-  color: #b0b;
+  color: #c6c;
 }
 
