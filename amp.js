@@ -2,8 +2,9 @@
 
 const MULTIPLIER = 0.1;
 const STROKE_COLOR = 'rgb(33, 33, 33)';
-const LINE_WIDTH = 3;
+const LINE_WIDTH = 5;
 const MIN_SUSTAIN_WIDTH = 10;
+const MARGIN = 10;
 
 class Amp {
 
@@ -31,8 +32,8 @@ class Amp {
     // pretty graph
     var canvas = element.querySelector('.ADSRGraph');
     this.canvasCtx = canvas.getContext("2d");
-    this.canvasWidth = canvas.width;
-    this.canvasHeight = canvas.height;
+    this.canvasWidth = canvas.width - MARGIN;
+    this.canvasHeight = canvas.height - MARGIN;
     this.drawADSRGraph = this.drawADSRGraph.bind(this);
     this.updateADSR();
   }
@@ -79,26 +80,22 @@ class Amp {
       return x * valueMax / 100;
     };
 
-    var attack = percent(this.attack);
+    var attack = percent(this.attack) + MARGIN;
     var decay = percent(this.decay);
     var release = percent(this.release);
     // sustain gets the rest
     var sustainW = this.canvasWidth - (attack + decay + release);
-    var sustainH = this.sustain * this.canvasHeight / 100;
+    var sustainH = this.canvasHeight - (this.sustain * this.canvasHeight / 100);
 
-    console.log('adsr:', attack, decay, sustainW, release);
-    console.log(attack + decay + sustainW + release, '/', this.canvasWidth);
-    console.log('sustainLevel', sustainH);
-
-    this.canvasCtx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    this.canvasCtx.clearRect(0, 0, this.canvasWidth + MARGIN, this.canvasHeight + MARGIN);
     this.canvasCtx.beginPath();
     this.canvasCtx.lineWidth = LINE_WIDTH;
     this.canvasCtx.strokeStyle = STROKE_COLOR;
-    this.canvasCtx.moveTo(0, this.canvasHeight);
-    this.canvasCtx.lineTo(attack, 0);
+    this.canvasCtx.moveTo(5, this.canvasHeight);
+    this.canvasCtx.lineTo(attack, MARGIN);
     this.canvasCtx.lineTo(attack + decay, sustainH);
     this.canvasCtx.lineTo(attack + decay + sustainW, sustainH);
-    this.canvasCtx.lineTo(attack + decay + sustainW + release, this.canvasHeight);
+    this.canvasCtx.lineTo(this.canvasWidth, this.canvasHeight);
     this.canvasCtx.stroke();
   }
 }
