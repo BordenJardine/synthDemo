@@ -20,6 +20,8 @@ class Amp {
     this.audioCtx = audioCtx;
     this.amp = audioCtx.createGain();
     this.amp.gain.value = 0.0;
+
+    //ADSR stuff
     this.attack = 25;
     this.decay = 25;
     this.sustain = 50;
