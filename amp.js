@@ -1,7 +1,7 @@
 (function() {
 
 // scalse the ADSR values
-const MULTIPLIER = 0.025;
+const MULTIPLIER = 0.01;
 
 const GAIN_COOLDOWN = 0.01;
 
