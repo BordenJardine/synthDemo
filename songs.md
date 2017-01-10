@@ -5,3 +5,4 @@
 - lucky man (dual osc?)
 - beef steak
 - ? just what i needed (cross mod/sync)
+- tarzan boy
