@@ -14,12 +14,17 @@ class Filter {
 
     // controls
     this.updateFilter = this.updateFilter.bind(this);
-
     this.cutoffControl = element.querySelector('.cutoffControl');
     this.resonanceControl = element.querySelector('.resonanceControl');
     [this.cutoffControl, this.resonanceControl]
       .forEach(control => control.oninput = this.updateFilter);
 
+    this.updateFilterType = this.updateFilterType.bind(this);
+    this.filterTypeControls = element.querySelectorAll('.filterTypeControl');
+    this.filterTypeControls.forEach(filterTypeControl => {
+      filterTypeControl.onchange = this.updateFilterType;
+    });
+  
     this.updateFilter();
   }
 
@@ -39,12 +44,23 @@ class Filter {
     cutoff = Math.max(cutoff, MIN_CUTOFF);
     resonance = Math.max(resonance, MIN_RES);
 
-    console.log(cutoff, resonance);
+    this.filter.frequency.cancelScheduledValues(this.audioCtx.currentTime);
+    this.filter.Q.cancelScheduledValues(this.audioCtx.currentTime);
+
     var time = this.audioCtx.currentTime + COOLDOWN;
 
     this.filter.frequency.linearRampToValueAtTime(cutoff, time);
     this.filter.Q.linearRampToValueAtTime(resonance, time);
   }
+
+  updateFilterType() {
+    this.filterTypeControls.forEach(filterTypeControl => {
+      if (filterTypeControl.checked) {
+        this.filter.type = filterTypeControl.value;
+        console.log('type', this.filter.type);
+      };
+    });
+  };
 }
 
 window.Filter = Filter;

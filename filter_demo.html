@@ -1,5 +1,5 @@
 <head>
-  <title>envelope!</title>
+  <title>filter!</title>
   <script src="scope.js"></script>
   <script src="osc.js"></script>
   <script src="amp.js"></script>
@@ -34,6 +34,11 @@
     <div class="module filter">
       <div class="tag">filter</div>
       <div class="controls">
+        <label for="filterType" class="block">type</label>
+        <input class="filterTypeControl" type="radio" name="filterType" value="lowpass" checked>lowpass</input><br>
+        <input class="filterTypeControl" type="radio" name="filterType" value="highpass">highpass</input><br>
+        <input class="filterTypeControl" type="radio" name="filterType" value="bandpass">bandpass</input><br>
+        <hr>
         <label class="block">cutoff</label>
         <input class="cutoffControl" type="range" min="0" max="100" step="1" value="100"></input>
         <label class="block">resonance</label>
