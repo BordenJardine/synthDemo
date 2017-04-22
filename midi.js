@@ -9,6 +9,7 @@ class MidiHandler {
     // listen for midi messages
     navigator.requestMIDIAccess().then(midiAccess => {
       for (var input of midiAccess.inputs.values()) {
+        console.log(`found ${input.name}`);
         input.onmidimessage = this.messageReceived.bind(this);
       }
     });

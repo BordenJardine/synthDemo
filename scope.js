@@ -19,8 +19,8 @@ class Scope {
     this.height = this.canvas.height;
     this.scaling = this.height / RESOLUTION;
     this.drawScope = this.drawScope.bind(this);
-    this.drawScope();
     this.enabled = true;
+    this.drawScope();
   }
 
   get input() {
