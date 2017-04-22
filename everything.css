@@ -23,9 +23,9 @@ label {
   border-radius:200px;
 }
 
-.scope.frequencyGraph {
-  border-radius:0px;
-  width: 100%;
+.freqGraph {
+  height: 275px;
+  width: 350px;
 }
 
 .smallScope {

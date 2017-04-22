@@ -3,9 +3,9 @@
 class DoubleScope {
   constructor(element, audioCtx) {
     this.scopeElement = element.querySelector('.scope');
-    this.freqElement = element.querySelector('.freqGraph');
+    this.graphElement = element.querySelector('.freqGraph');
     this.scope = new Scope(this.scopeElement, audioCtx);
-    this.graph = new FrequencyGraph(this.freqElement, audioCtx);
+    this.graph = new FrequencyGraph(this.graphElement, audioCtx);
     this.shown = this.scope;
 
     this.controls = element.querySelectorAll('.scopeTypeControl');
@@ -20,20 +20,20 @@ class DoubleScope {
   toggle() {
     console.log('toggle!');
     if (this.shown == this.scope) {
-      this.freqElement.classList.add('hidden');
-      this.scopeElement.classList.remove('hidden');
-      this.input.disconnect(this.graph.input);
-      this.input.connect(this.scope.input);
-      this.scope.enable();
-      this.graph.disable();
-      this.shown = this.graph;
-    } else {
-      this.scopeElement.classList.add('hidden');
-      this.freqElement.classList.remove('hidden');
       this.input.disconnect(this.scope.input);
       this.input.connect(this.graph.input);
       this.graph.enable();
       this.scope.disable();
+      this.scopeElement.classList.add('hidden');
+      this.graphElement.classList.remove('hidden');
+      this.shown = this.graph;
+    } else {
+      this.input.disconnect(this.graph.input);
+      this.input.connect(this.scope.input);
+      this.scope.enable();
+      this.graph.disable();
+      this.graphElement.classList.add('hidden');
+      this.scopeElement.classList.remove('hidden');
       this.shown = this.scope;
     }
   }
