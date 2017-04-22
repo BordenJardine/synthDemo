@@ -2,6 +2,10 @@ label {
   font-weight: 600;
 }
 
+.hidden {
+  display: none;
+}
+
 .block {
   display: block;
 }
@@ -17,6 +21,11 @@ label {
 .scope {
   border: 10px solid rgb(10, 30, 10);
   border-radius:200px;
+}
+
+.scope.frequencyGraph {
+  border-radius:0px;
+  width: 100%;
 }
 
 .smallScope {
@@ -86,5 +95,12 @@ label {
 .scopeModule {
   height: 400px;
   width: 350px;
+}
+
+.scopeToggle {
+  position: absolute;
+  margin: 0 auto;
+  bottom: 0;
+  left: 0;
 }
 

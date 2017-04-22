@@ -1,6 +1,8 @@
 <head>
   <title>filter!</title>
+  <script src="freq.js"></script>
   <script src="scope.js"></script>
+  <script src="doubleScope.js"></script>
   <script src="osc.js"></script>
   <script src="amp.js"></script>
   <script src="filter.js"></script>
@@ -49,13 +51,13 @@
     <div class="module amp">
       <div class="tag">amplifier</div>
       <div class="controls">
-        <label class="block">attack</label>
+        <label class="block attackLabel">attack</label>
         <input class="attackControl" type="range" min="0" max="100" step="1"></input>
-        <label class="block">decay</label>
+        <label class="block decayLabel">decay</label>
         <input class="decayControl" type="range" min="0" max="100" step="1"></input>
-        <label class="block">sustain</label>
+        <label class="block sustainLabel">sustain</label>
         <input class="sustainControl" type="range" min="0" max="100" step="1"></input>
-        <label class="block">release</label>
+        <label class="block releaseLabel">release</label>
         <input class="releaseControl" type="range" min="0" max="100" step="1"></input>
       </div>
       <div class="graphContainer">
@@ -67,6 +69,11 @@
       <div class="tag">scope</div>
       <div class="graphContainer">
         <canvas class="scope bigScope"></canvas>
+        <canvas class="freqGraph bigScope hidden"></canvas>
+      <div class="scopeToggle">
+        <input class="scopeTypeControl" type="radio" name="filterType" value="scope" checked>scope</input><br>
+        <input class="scopeTypeControl" type="radio" name="filterType" value="freq">freq</input><br>
+      </div>
       </div>
     </div>
 

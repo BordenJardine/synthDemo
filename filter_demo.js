@@ -11,13 +11,14 @@ var filter = new Filter(filterElement, audioCtx);
 var ampElement = document.querySelector('.amp');
 var amp = new Amp(ampElement, audioCtx);
 
-var scopeElement = document.querySelector('.bigScope');
-var scope = new Scope(scopeElement, audioCtx);
+var scopeElement = document.querySelector('.scopeModule');
+var doubleScope = new DoubleScope(scopeElement, audioCtx);
 
 oscillator.connect(amp.input);
 amp.connect(filter.input);
-filter.connect(scope.input);
-scope.connect(audioCtx.destination);
+doubleScope.monitor(filter.input);
+
+filter.connect(audioCtx.destination);
 
 var midiHandler = new MidiHandler();
 midiHandler.onnoteon = (frequency => {

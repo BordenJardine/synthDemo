@@ -20,6 +20,7 @@ class Scope {
     this.scaling = this.height / RESOLUTION;
     this.drawScope = this.drawScope.bind(this);
     this.drawScope();
+    this.enabled = true;
   }
 
   get input() {
@@ -28,6 +29,19 @@ class Scope {
 
   connect(node) {
     this.analyser.connect(node);
+  }
+
+  disconnect(node) {
+    this.analyser.disconnect(node);
+  };
+
+  enable() {
+    this.enabled = true;
+    this.drawScope();
+  }
+
+  disable() {
+    this.enabled = false;
   }
 
   drawScope() {
@@ -62,7 +76,7 @@ class Scope {
     }
 
     this.canvasCtx.stroke();
-    requestAnimationFrame(this.drawScope);
+    if(this.enabled) requestAnimationFrame(this.drawScope);
   }
 }
 
