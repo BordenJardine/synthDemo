@@ -55,10 +55,8 @@ class FrequencyGraph {
     var x = 0;
 
     for(var i = 0; i < this.bufferLength; i++) {
-      // barHeight = this.dataArray[i]/2;
       barHeight = this.dataArray[i];
 
-      // this.canvasCtx.fillStyle = 'rgb(' + (barHeight+100) + ',50,50)';
       this.canvasCtx.fillStyle = BAR_COLOR;
       this.canvasCtx.fillRect(x,this.height-barHeight/2,this.barWidth,barHeight);
 
