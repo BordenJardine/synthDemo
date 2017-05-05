@@ -17,6 +17,8 @@
   - blue monday?
 - two oscilators
 - lfo
+ - vibrato (pitch)
+ - tremolo (volume)
 - cross modulation (/sync?)
 - fm synthesis
 - wave tables?
