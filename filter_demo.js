@@ -23,11 +23,11 @@ filter.connect(audioCtx.destination);
 var midiHandler = new MidiHandler();
 midiHandler.onnoteon = (frequency => {
   oscillator.freq = frequency;
-  amp.trigger(frequency);
+  amp.envelope.trigger(frequency);
 });
 
 midiHandler.onnoteoff = (frequency => {
-  amp.releaseNote(frequency);
+  amp.envelope.releaseNote(frequency);
 });
 
 };

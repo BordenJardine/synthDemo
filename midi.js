@@ -4,7 +4,6 @@ const NOTE_ON = 144;
 const NOTE_OFF = 128;
 
 class MidiHandler {
-
   constructor() {
     // listen for midi messages
     navigator.requestMIDIAccess().then(midiAccess => {
