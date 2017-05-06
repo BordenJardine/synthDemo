@@ -11,6 +11,7 @@ class Filter {
   constructor(element, audioCtx) {
     this.audioCtx = audioCtx;
     this.filter = audioCtx.createBiquadFilter();
+    this.envelope = new Envelope(element, audioCtx, this.filter.frequency);
 
     // controls
     this.updateFilter = this.updateFilter.bind(this);
@@ -41,15 +42,17 @@ class Filter {
     var cutoff = this.cutoffControl.value * MAX_CUTOFF / 100;
     var resonance = this.resonanceControl.value * MAX_RES / 100;
 
+    // adjustig the cutoff slider both sets the current frequency
+    //   and sets the max the envelope will take it to
     cutoff = Math.max(cutoff, MIN_CUTOFF);
-    resonance = Math.max(resonance, MIN_RES);
-
-    this.filter.frequency.cancelScheduledValues(this.audioCtx.currentTime);
-    this.filter.Q.cancelScheduledValues(this.audioCtx.currentTime);
+    this.envelope.maxValue = cutoff;
 
     var time = this.audioCtx.currentTime + COOLDOWN;
-
+    this.filter.frequency.cancelScheduledValues(this.audioCtx.currentTime);
     this.filter.frequency.linearRampToValueAtTime(cutoff, time);
+
+    resonance = Math.max(resonance, MIN_RES);
+    this.filter.Q.cancelScheduledValues(this.audioCtx.currentTime);
     this.filter.Q.linearRampToValueAtTime(resonance, time);
   }
 

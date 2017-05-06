@@ -20,14 +20,16 @@ doubleScope.monitor(filter.input);
 
 filter.connect(audioCtx.destination);
 
+var envelopes = [amp.envelope, filter.envelope];
+
 var midiHandler = new MidiHandler();
 midiHandler.onnoteon = (frequency => {
   oscillator.freq = frequency;
-  amp.envelope.trigger(frequency);
+  envelopes.forEach(envelope => envelope.trigger(frequency));
 });
 
 midiHandler.onnoteoff = (frequency => {
-  amp.envelope.releaseNote(frequency);
+  envelopes.forEach(envelope => envelope.releaseNote(frequency));
 });
 
 };

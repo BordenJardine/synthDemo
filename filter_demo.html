@@ -34,11 +34,11 @@
       </div>
     </div>
 
-    <div class="module filter">
+    <div class="module extraWide filter">
       <div class="tag">filter</div>
       <div class="controls">
         <label for="filterType" class="block">type</label>
-        <input class="filterTypeControl" type="radio" name="filterType" value="lowpass" checked>lowpass</input><br>
+        <input class="filterTypeControl" type="radio" name="filterType" value="lowpass" checked="checked">lowpass</input><br>
         <input class="filterTypeControl" type="radio" name="filterType" value="highpass">highpass</input><br>
         <input class="filterTypeControl" type="radio" name="filterType" value="bandpass">bandpass</input><br>
         <hr>
@@ -46,6 +46,16 @@
         <input class="cutoffControl" type="range" min="0" max="100" step="1" value="100"></input>
         <label class="block">resonance</label>
         <input class="resonanceControl" type="range" min="0" max="100" step="1" value="0"></input>
+      </div>
+      <div class="controls">
+        <label class="block attackLabel">attack</label>
+        <input class="attackControl" type="range" min="0" max="100" step="1"></input>
+        <label class="block decayLabel">decay</label>
+        <input class="decayControl" type="range" min="0" max="100" step="1"></input>
+        <label class="block sustainLabel">sustain</label>
+        <input class="sustainControl" type="range" min="0" max="100" step="1"></input>
+        <label class="block releaseLabel">release</label>
+        <input class="releaseControl" type="range" min="0" max="100" step="1"></input>
       </div>
       <div class="graphContainer">
         <canvas class="ADSRGraph"></canvas>

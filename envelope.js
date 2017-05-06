@@ -25,6 +25,7 @@ class Envelope {
     this.sustain = 50;
     this.release = 25;
     this.currentNote = null;
+    this.maxValue = 1.0;
 
     // controls
     this.attackControl = element.querySelector('.attackControl');
@@ -62,11 +63,11 @@ class Envelope {
     let now = this.audioCtx.currentTime;
     let attack = this.attack * MULTIPLIER;
     let decay = this.decay * MULTIPLIER;
-    let sustain = this.sustain * 0.01;
+    let sustain = this.maxValue * (this.sustain * 0.01);
 
     this.audioParam.cancelScheduledValues(now);
     this.audioParam.linearRampToValueAtTime(0.0, now, COOLDOWN);
-    this.audioParam.linearRampToValueAtTime(1.0, now + attack);
+    this.audioParam.linearRampToValueAtTime(this.maxValue, now + attack);
     this.audioParam.linearRampToValueAtTime(sustain, now + attack + decay + COOLDOWN);
   }
 
