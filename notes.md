@@ -26,3 +26,5 @@
 - popcorn
 - lucky man
 - chameleon 
+- onyeabor
+- beef steak
