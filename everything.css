@@ -45,6 +45,12 @@ label {
 
 .moduleContainer {
   display: flex;
+  justify-content: center;
+}
+
+.vertContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .module {
