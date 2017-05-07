@@ -41,11 +41,14 @@ class LFO {
     this.updateIntensity = this.updateIntensity.bind(this);
     this.intensityControl = element.querySelector('.intensityControl');
     this.intensityControl.oninput = this.updateIntensity;
+
+    this.updateFrequency = this.updateFrequency.bind(this);
+    this.frequencyControl = element.querySelector('.frequencyControl');
+    this.frequencyControl.oninput = this.updateFrequency;
   }
 
   // lfo is expected to connect to an audio parameter rather than a node
   connect(audioParam) {
-    this.disconnect();
     this.gainNode.connect(audioParam);
     this.currentConnection = audioParam;
   }
@@ -65,6 +68,10 @@ class LFO {
 
   updateIntensity() {
     this.gainNode.gain.value = +this.intensityControl.value;
+  }
+
+  updateFrequency() {
+    this.oscillator.frequency.value = this.frequencyControl.value;
   }
 }
 

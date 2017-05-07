@@ -43,26 +43,25 @@ midiHandler.onnoteoff = (frequency => {
 
 var lfoControls = lfoElement.querySelectorAll('.destinationControl');
 var updateLFO = function() {
-    lfoControls.forEach(destinationControl => {
-      if (destinationControl.checked) {
-        lfo.disconnect();
-        switch(destinationControl.value) {
-          case 'pitch':
-            lfo.connect(oscillator1.osc.frequency);
-            lfo.connect(oscillator2.osc.frequency);
-            break;
-          case 'volume':
-            lfo.connect(amp.amp.gain);
-            break;
-          case 'cutoff':
-            lfo.connect(filter.filter.frequency);
-            break;
-          default:
-            lfo.disconnect();
-        }
-        this.oscillator.type = waveformControl.value;
-      };
-    });
+  lfoControls.forEach(destinationControl => {
+    if (destinationControl.checked) {
+      lfo.disconnect();
+      switch(destinationControl.value) {
+        case 'pitch':
+          lfo.connect(oscillator1.oscillator.frequency);
+          lfo.connect(oscillator2.oscillator.frequency);
+          break;
+        case 'volume':
+          lfo.connect(amp.amp.gain);
+          break;
+        case 'cutoff':
+          lfo.connect(filter.filter.frequency);
+          break;
+        default:
+          lfo.disconnect();
+      }
+    };
+  });
 }
 
 // Routing for the LFO
