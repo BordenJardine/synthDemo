@@ -41,6 +41,7 @@ midiHandler.onnoteoff = (frequency => {
   envelopes.forEach(envelope => envelope.releaseNote(frequency));
 });
 
+// Routing for the LFO
 var lfoControls = lfoElement.querySelectorAll('.destinationControl');
 var updateLFO = function() {
   lfoControls.forEach(destinationControl => {
@@ -68,7 +69,23 @@ var updateLFO = function() {
   });
 }
 
-// Routing for the LFO
 lfoControls.forEach(lfoControl => lfoControl.onchange = updateLFO);
+
+// xmod
+var xmodControl = document.querySelector('.xmod');
+var xmodGain = audioCtx.createGain();
+xmodGain.gain.value = 10;
+xmodGain.connect(oscillator2.oscillator.frequency);
+
+xmodControl.onchange = function() {
+  console.log('hur');
+  if (xmodControl.checked) {
+    oscillator1.connect(xmodGain);
+  } else {
+    oscillator1.disconnect(xmodGain);
+  }
+}
+
+
 };
 

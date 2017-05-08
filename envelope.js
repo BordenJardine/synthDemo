@@ -3,7 +3,7 @@
 // scalse the ADSR values
 const MULTIPLIER = 0.01;
 
-const COOLDOWN = 0.01;
+const COOLDOWN = 0.05;
 
   //graph stuff
 const ATTACK_COLOR = '#ff4242';
@@ -59,14 +59,14 @@ class Envelope {
 
   trigger(note) {
     this.currentNote = note;
-    let amp = this.amp;
     let now = this.audioCtx.currentTime;
     let attack = this.attack * MULTIPLIER;
     let decay = this.decay * MULTIPLIER;
+    // sustain is a %age
     let sustain = this.maxValue * (this.sustain * 0.01);
 
     this.audioParam.cancelScheduledValues(now);
-    this.audioParam.linearRampToValueAtTime(0.0, now, COOLDOWN);
+    this.audioParam.linearRampToValueAtTime(0.0, now + COOLDOWN);
     this.audioParam.linearRampToValueAtTime(this.maxValue, now + attack);
     this.audioParam.linearRampToValueAtTime(sustain, now + attack + decay + COOLDOWN);
   }
