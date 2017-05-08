@@ -52,7 +52,6 @@ var updateMode = function() {
   if (oldMode != mode) {
     setup();
   }
-  console.log(mode);
 };
 modeControls.forEach(control => control.onchange = updateMode);
 

@@ -17,7 +17,6 @@ class FrequencyGraph {
 
     this.bufferLength = this.analyser.frequencyBinCount;
     this.dataArray = new Uint8Array(this.bufferLength);
-    console.log(this.bufferLength);
     this.barWidth = (this.width / this.bufferLength) * 2.5;
 
     this.enabled = true;

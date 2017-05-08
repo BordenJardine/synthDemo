@@ -18,7 +18,6 @@ class DoubleScope {
   }
 
   toggle() {
-    console.log('toggle!');
     if (this.shown == this.scope) {
       this.input.disconnect(this.scope.input);
       this.input.connect(this.graph.input);
