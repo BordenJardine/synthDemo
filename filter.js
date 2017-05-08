@@ -60,7 +60,6 @@ class Filter {
     this.filterTypeControls.forEach(filterTypeControl => {
       if (filterTypeControl.checked) {
         this.filter.type = filterTypeControl.value;
-        console.log('type', this.filter.type);
       };
     });
   };

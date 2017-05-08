@@ -25,6 +25,7 @@
   - hi/lo/band pass
   - synth character
   - chameleon
+  - talk about polyphony
 - two oscilators
 - `lfo_demo.html`
    - vibrato (pitch)
