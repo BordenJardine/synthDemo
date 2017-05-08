@@ -1,32 +1,41 @@
 # Page order
 - talk briefly about the different schools and how we are going to focus on
   subtractive synthesis
+  - a synthesizer is any sort of musical instrument that generates sound electronically
+  - east v west coast
+  - subtractive
+  - FM
+  - Wave tables
+  - Analog Modeling
 - talk about the modular nature of synths
 - `osc_demo.html` the javascript oscilator w/gain node
   - talk about the waveforms
   - zelda song
-- `additive_demo.html` talk about wave harmonics
-- op-amp oscilator demo and explaination (optional)
+- `additive_demo.html`
+  - harmonics wikipedia page
+  - talk about wave harmonics
+  - draw bar organ
 - `envelope_demo.html` amplifier envelope
+  - explain amplifiers and ADSR
   - beefsteak
   - popcorn
-  - talk about what 'connect' means for different synths
+  - 'connect' for different synths
 - `filter_demo.html` the filter
-- `filter_envelope_demo.html` the filter with ADSR
+  - frequency graph
+  - hi/lo/band pass
+  - synth character
   - chameleon
-  - blue monday?
 - two oscilators
-- lfo
+- `lfo_demo.html`
    - vibrato (pitch)
    - tremolo (volume)
 - cross modulation (/sync?)
 - fm synthesis
-- wave tables?
 
 # Songs To Learn
 - zelda
 - popcorn
 - lucky man
-- chameleon 
+- chameleon
 - onyeabor
 - beef steak

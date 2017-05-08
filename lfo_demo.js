@@ -48,18 +48,22 @@ var updateLFO = function() {
       lfo.disconnect();
       switch(destinationControl.value) {
         case 'pitch':
+          lfo.multiplier = 10;
           lfo.connect(oscillator1.oscillator.frequency);
           lfo.connect(oscillator2.oscillator.frequency);
           break;
         case 'volume':
+          lfo.multiplier = 1;
           lfo.connect(amp.amp.gain);
           break;
         case 'cutoff':
+          lfo.multiplier = 10000;
           lfo.connect(filter.filter.frequency);
           break;
         default:
           lfo.disconnect();
       }
+      lfo.updateIntensity();
     };
   });
 }

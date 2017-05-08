@@ -5,18 +5,20 @@
   <link href="everything.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body>
-  <div class="module osc">
-    <div class="tag">additive osc</div>
-    <div class="controlls">
-      <label class="block" for="modeControl">harmonics</label>
-      <input class="modeControl" type="radio" name="mode" value="sawtooth" checked>all</input><br>
-      <input class="modeControl" type="radio" name="mode" value="square">every other</input><br>
-      <hr>
-      <label class="block" for="wavesControl">sine waves: <span class="wavesDisplay"></span></label>
-      <input class="wavesControl" type="range" min="1" max="25" step="1" value="1"></input>
-    </div>
-    <div class="scopeContainer">
-      <canvas class="scope smallScope"></canvas>
+  <div class="moduleContainer">
+    <div class="module osc">
+      <div class="tag">additive osc</div>
+      <div class="controlls">
+        <label class="block" for="modeControl">harmonics</label>
+        <input class="modeControl" type="radio" name="mode" value="sawtooth" checked>all</input><br>
+        <input class="modeControl" type="radio" name="mode" value="square">every other</input><br>
+        <hr>
+        <label class="block" for="wavesControl">sine waves: <span class="wavesDisplay"></span></label>
+        <input class="wavesControl" type="range" min="1" max="25" step="1" value="1"></input>
+      </div>
+      <div class="scopeContainer">
+        <canvas class="scope smallScope"></canvas>
+      </div>
     </div>
   </div>
   <span class="frequencies"></span>

@@ -26,6 +26,9 @@ class LFO {
     this.gainNode.gain.value = DEFAULT_GAIN;
     this.oscillator.connect(this.gainNode);
 
+    this.useMultiplier = false;
+    this.currentConnections = [];
+
     this.oscillator.start();
 
     // hook up some controls
@@ -50,12 +53,14 @@ class LFO {
   // lfo is expected to connect to an audio parameter rather than a node
   connect(audioParam) {
     this.gainNode.connect(audioParam);
-    this.currentConnection = audioParam;
+    this.currentConnections.push(audioParam);
   }
 
   disconnect() {
-    if (!this.currentConnection) return;
-    this.gainNode.disconnect(this.currentConnection);
+    this.currentConnections.forEach(audioParam => {
+      this.gainNode.disconnect(audioParam);
+    });
+    this.currentConnections = [];
   }
 
   updateWaveform() {
@@ -67,7 +72,7 @@ class LFO {
   }
 
   updateIntensity() {
-    this.gainNode.gain.value = +this.intensityControl.value;
+    this.gainNode.gain.value = +this.intensityControl.value * this.multiplier;
   }
 
   updateFrequency() {
