@@ -1,6 +1,6 @@
 (function() {
 
-// scalse the ADSR values
+// scale the ADSR values
 const MULTIPLIER = 0.01;
 
 const COOLDOWN = 0.05;
@@ -61,13 +61,14 @@ class Envelope {
     this.currentNote = note;
     let now = this.audioCtx.currentTime;
     let attack = this.attack * MULTIPLIER;
+    attack = Math.max(attack, COOLDOWN);
     let decay = this.decay * MULTIPLIER;
     // sustain is a %age
-    let sustain = this.maxValue * (this.sustain * 0.01);
+    let sustain = this.maxValue * (this.sustain * MULTIPLIER);
 
     this.audioParam.cancelScheduledValues(now);
     this.audioParam.linearRampToValueAtTime(0.0, now + COOLDOWN);
-    this.audioParam.linearRampToValueAtTime(this.maxValue, now + attack);
+    this.audioParam.linearRampToValueAtTime(this.maxValue, now + attack + COOLDOWN);
     this.audioParam.linearRampToValueAtTime(sustain, now + attack + decay + COOLDOWN);
   }
 
