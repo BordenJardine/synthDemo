@@ -1,4 +1,4 @@
-# Page order
+# Talk Notes!
 - talk briefly about the different schools and how we are going to focus on
   subtractive synthesis
   - a synthesizer is any sort of musical instrument that generates sound electronically
