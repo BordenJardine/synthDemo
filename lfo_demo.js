@@ -78,8 +78,8 @@ xmodGain.gain.value = 10;
 xmodGain.connect(oscillator2.oscillator.frequency);
 
 xmodControl.onchange = function() {
-  console.log('hur');
   if (xmodControl.checked) {
+    console.log('hur');
     oscillator1.connect(xmodGain);
   } else {
     oscillator1.disconnect(xmodGain);

@@ -1,15 +1,10 @@
 # synthDemo
 js web audio synth stuff
 
-slides:
+check out notes.md for the 'slide' order and other various notes for the talk.
 
-- Schmidt Trigger Osc
-- Oscillator
-- Saw waveform explanation
-- Square waveform explanation
-- 2 Oscillators
-- Amp Envelope
-- Filter
-- LFO
-- Cross Mod?
-- FM Synth?
+Please forgive the quality of the code herein.
+I chose to forgo front end frameworks entirely as an abject lesson.
+
+On the plus side, if you are here to learn about synthesizers or the web audio API,
+at least you wont also have to learn about javacsript tooling along the way.

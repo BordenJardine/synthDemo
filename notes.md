@@ -2,8 +2,8 @@
 - talk briefly about the different schools and how we are going to focus on
   subtractive synthesis
   - a synthesizer is any sort of musical instrument that generates sound electronically
-  - east v west coast
   - subtractive
+  - east v west coast
   - FM
   - Wave tables
   - Analog Modeling
@@ -12,7 +12,7 @@
   - talk about the waveforms
   - zelda song
   - ask about why nintendo used the sqr wave
-- `additive_demo.html`
+- `additive_demo.html` adding together sine waves to make more complex waves
   - harmonics wikipedia page
   - talk about wave harmonics
   - draw bar organ
@@ -23,21 +23,20 @@
   - 'connect' for different synths
 - `filter_demo.html` the filter
   - frequency graph
+  - wah-wah
+  - chameleon
   - hi/lo/band pass
   - synth character
-  - chameleon
   - talk about polyphony
-- two oscilators
 - `lfo_demo.html`
-   - vibrato (pitch)
-   - tremolo (volume)
-- cross modulation (/sync?)
-- fm synthesis
-
-# Songs To Learn
-- zelda
-- popcorn
-- lucky man
-- chameleon
-- onyeabor
-- beef steak
+  - two oscilators
+  - lucky man
+  - techno
+  - vibrato (pitch)
+  - tremolo (volume)
+  - cross modulation
+  - fm synthesis
+- what did I leave out
+  - sequencers
+  - PWM
+  - Polyphony
