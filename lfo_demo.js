@@ -73,17 +73,21 @@ lfoControls.forEach(lfoControl => lfoControl.onchange = updateLFO);
 
 // xmod
 var xmodControl = document.querySelector('.xmod');
+var xmodIntensity = document.querySelector('.xmodIntensity');
 var xmodGain = audioCtx.createGain();
-xmodGain.gain.value = 10;
+xmodGain.gain.value = 10000;
 xmodGain.connect(oscillator2.oscillator.frequency);
 
 xmodControl.onchange = function() {
   if (xmodControl.checked) {
-    console.log('hur');
-    oscillator1.connect(xmodGain);
+    oscillator1.oscillator.connect(xmodGain);
   } else {
-    oscillator1.disconnect(xmodGain);
+    oscillator1.oscillator.disconnect(xmodGain);
   }
+}
+
+xmodIntensity.oninput = function() {
+  xmodGain.gain.value = +xmodIntensity.value;
 }
 
 

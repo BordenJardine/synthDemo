@@ -35,8 +35,11 @@
   - vibrato (pitch)
   - tremolo (volume)
   - cross modulation
-  - fm synthesis
+    - fm synthesis (digital sine waves became inexpensive)
+    - DX-7
+    - Sega Genisis
+    - Sound blaster
 - what did I leave out
   - sequencers
   - PWM
-  - Polyphony
+  - polyphony
