@@ -3,8 +3,6 @@
 // scale the ADSR values
 const MULTIPLIER = 0.01;
 
-const COOLDOWN = 0.05;
-
   //graph stuff
 const ATTACK_COLOR = '#ff4242';
 const DECAY_COLOR = '#55b377';
@@ -61,15 +59,13 @@ class Envelope {
     this.currentNote = note;
     let now = this.audioCtx.currentTime;
     let attack = this.attack * MULTIPLIER;
-    attack = Math.max(attack, COOLDOWN);
     let decay = this.decay * MULTIPLIER;
     // sustain is a %age
     let sustain = this.maxValue * (this.sustain * MULTIPLIER);
 
-    this.audioParam.cancelScheduledValues(now);
-    this.audioParam.linearRampToValueAtTime(0.0, now + COOLDOWN);
-    this.audioParam.linearRampToValueAtTime(this.maxValue, now + attack + COOLDOWN);
-    this.audioParam.linearRampToValueAtTime(sustain, now + attack + decay + COOLDOWN);
+    this.audioParam.cancelScheduledValues(0);
+    this.audioParam.linearRampToValueAtTime(this.maxValue, now + attack);
+    this.audioParam.linearRampToValueAtTime(sustain, now + attack + decay);
   }
 
   releaseNote(note) {
@@ -77,7 +73,7 @@ class Envelope {
     let release = this.audioCtx.currentTime + (this.release * MULTIPLIER);
 
     this.audioParam.cancelScheduledValues(0);
-    this.audioParam.linearRampToValueAtTime(0.0, release + COOLDOWN);
+    this.audioParam.linearRampToValueAtTime(0.0, release);
   }
 
   drawADSRGraph() {

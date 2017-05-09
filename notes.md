@@ -11,6 +11,7 @@
 - `osc_demo.html` the javascript oscilator w/gain node
   - talk about the waveforms
   - zelda song
+  - ask about why nintendo used the sqr wave
 - `additive_demo.html`
   - harmonics wikipedia page
   - talk about wave harmonics
