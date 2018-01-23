@@ -9,4 +9,4 @@ I chose to forgo front end frameworks entirely as an abject lesson.
 On the plus side, if you are here to learn about synthesizers or the web audio API,
 at least you wont also have to learn about javacsript tooling along the way.
 
-You can play with the finished synth[here](https://bordenjardine.github.io/synthDemo/lfo_demo.html)
+You can play with the finished synth [here](https://bordenjardine.github.io/synthDemo/lfo_demo.html)
