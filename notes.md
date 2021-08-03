@@ -1,6 +1,5 @@
 # Talk Notes!
-- talk briefly about the different schools and how we are going to focus on
-  subtractive synthesis
+- talk briefly about the different schools and how we are going to focus on subtractive synthesis
   - a synthesizer is any sort of musical instrument that generates sound electronically
   - subtractive
   - east v west coast
@@ -43,3 +42,11 @@
   - sequencers
   - PWM
   - polyphony
+
+Pages
+=====
+- `osc_demo.html`
+- `additive_demo.html`
+- `envelope_demo.html`
+- `filter_demo.html`
+- `lfo_demo.html`

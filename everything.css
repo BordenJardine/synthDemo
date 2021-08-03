@@ -48,6 +48,13 @@ label {
   justify-content: center;
 }
 
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 50px auto;
+}
+
 .vertContainer {
   display: flex;
   flex-direction: column;
@@ -116,5 +123,10 @@ label {
 
 .xmodContainer {
   margin-left: 10px;
+}
+
+.frequencies {
+  width: 50%;
+  margin: 10px auto;
 }
 
