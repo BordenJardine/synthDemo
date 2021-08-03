@@ -1,4 +1,5 @@
 window.onload = function(){
+document.querySelector('#start').onclick = function() {
 
 var audioCtx = new window.AudioContext();
 
@@ -92,4 +93,4 @@ xmodIntensity.oninput = function() {
 
 
 };
-
+};

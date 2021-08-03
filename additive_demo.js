@@ -1,4 +1,5 @@
 window.onload = function() {
+document.querySelector('#start').onclick = function() {
 
 var mode = 'sawtooth';
 var wavesControl = document.querySelector('.wavesControl');
@@ -96,5 +97,6 @@ var updateWaveCount = function() {
 wavesControl.oninput = updateWaveCount;
 
 setup();
+};
 };
 

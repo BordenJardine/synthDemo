@@ -1,4 +1,5 @@
 window.onload = function(){
+document.querySelector('#start').onclick = function() {
 
 var audioCtx = new window.AudioContext();
 
@@ -32,5 +33,6 @@ midiHandler.onnoteoff = (frequency => {
   envelopes.forEach(envelope => envelope.releaseNote(frequency));
 });
 
+};
 };
 
